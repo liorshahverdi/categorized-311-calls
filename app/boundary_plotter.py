@@ -1,18 +1,15 @@
-from flask import Flask, render_template, url_for
 import shapefile
 from glob import glob
 import time
 import random
 
-app = Flask(__name__)
-
-@app.route("/", methods=["GET","POST"])
 def index():
 	nyc = grab_nyc_neighborhoods()
 	all_neighborhood_coords = {}
 	for i in range(len(nyc)):
 		my_points = nyc[i].shape.points
 		name = str(nyc[i].record[3])
+		print name
 		new_list = get_neighborhood_coords(my_points)
 		all_neighborhood_coords[name] = new_list
 	return render_template('index.html', all_neighborhood_coords=all_neighborhood_coords)
@@ -41,4 +38,4 @@ def get_neighborhood_coords(my_points):
 		new_list.append(temp)
 	return new_list
 
-app.run(debug=True)
+index()
