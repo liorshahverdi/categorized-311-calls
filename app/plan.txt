@@ -1,0 +1,41 @@
+create a map of NYC (using leaflet) that categorizes 311 calls by neighborhood (use zillow neighborhood api to get the boundaries). 
+
+Use geopy to get the encoding (lat/long).
+Use geopy to do the categorization.
+
+Statistics we care about: 
+ - FOR EACH NEIGHBORHOOD, How many of each complaint-type over the last 6 months?
+ - FOR EACH NEIGHBORHOOD, What is the change month over month?
+ - Do any type of complaints tend to rise and fall together in number? (Use c3.js time series analysis to visualize this)
+
+
+ $ mongo
+MongoDB shell version: 2.6.6
+connecting to: test
+> use complaints
+switched to db complaints
+> db.complaints.find({"City": "BRONX"}).count()
+252052
+> db.complaints.find({"City": "BROOKLYN"}).count()
+435548
+> db.complaints.find({"City": "NEW YORK"}).count()
+287060
+> db.complaints.find({"City": "STATEN ISLAND"}).count()
+72686
+> db.complaints.find({"City": "QUEENS"}).count()
+489
+> db.complaints.find({"City": "MANHATTAN"}).count()
+9
+> db.complaints.find({"Borough": "MANHATTAN"}).count()
+301522
+> db.complaints.find({"Borough": "QUEENS"}).count()
+342988
+> db.complaints.find({"Borough": "STATEN ISLAND"}).count()
+73788
+> db.complaints.find({"Borough": "BRONX"}).count()
+263648
+> db.complaints.find({"Borough": "BROOKLYN"}).count()
+449836
+> db.complaints.find({"Borough": "Unspecified"}).count()
+76171
+>
